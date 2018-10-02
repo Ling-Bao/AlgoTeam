@@ -1,2 +1,2 @@
 # AlgoTeam
-for algorithm shang
+for algorithm sharing
