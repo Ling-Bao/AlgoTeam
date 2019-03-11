@@ -31,6 +31,26 @@ void KalmanFilter::SetQ(Eigen::MatrixXd Q_in) {
 }
 
 
+void KalmanFilter::SetH(Eigen::MatrixXd H_in) {
+    H_ = H_in;
+}
+
+
+void KalmanFilter::SetR(Eigen::MatrixXd R_in) {
+    R_ = R_in;
+}
+
+void KalmanFilter::MeasurementUpdate(const Eigen::VectorXd &z) {
+    Eigen::VectorXd y = z - H_ * x_;
+    Eigen::MatrixXd S = H_ * P_ * H_.transpose() + R_;
+    Eigen::MatrixXd K = P_ * H_.transpose() * S.inverse();
+    x_ = x_ + K * y;
+
+    long size = x_.size();
+    Eigen::MatrixXd I = Eigen::MatrixXd::Identity(size, size);
+    P_ = (I - K * H_) * P_;
+}
+
 void KalmanFilter::Predict() {
     x_ = F_ * x_;
 

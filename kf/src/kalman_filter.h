@@ -23,7 +23,13 @@ public:
 
     void SetQ(Eigen::MatrixXd Q_in);
 
+    void SetH(Eigen::MatrixXd H_in);
+
+    void SetR(Eigen::MatrixXd R_in);
+
     void Predict();
+
+    void MeasurementUpdate(const Eigen::VectorXd &z);
 
 private:
     // flag of initialization
@@ -40,6 +46,12 @@ private:
 
     // process covariance matrix
     Eigen::MatrixXd Q_;
+
+    // measurement matrix
+    Eigen::MatrixXd H_;
+
+    // measurement covariance matrix
+    Eigen::MatrixXd R_;
 };
 
 
