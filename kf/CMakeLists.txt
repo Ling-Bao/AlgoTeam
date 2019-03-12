@@ -7,16 +7,16 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 set(CMAKE_PREFIX_PATH /home/bl/workspace/libs)
 
+SET(BASE_DIR ${PROJECT_SOURCE_DIR})
+SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BASE_DIR}/lib)
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BASE_DIR}/bin)
+
 
 ################################################################################
 # Include CMake dependencies
 ################################################################################
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
-
-# Include helper macros and commands, and allow the included file to override
-# the CMake policies in this file
-include(${CMAKE_SOURCE_DIR}/cmake/CMakeHelper.cmake NO_POLICY_SCOPE)
 
 
 ################################################################################
@@ -60,6 +60,14 @@ endif ()
 # Add sources
 ################################################################################
 
+INCLUDE_DIRECTORIES(
+    ${EIGEN3_INCLUDE_DIRS}
+    ${CERES_INCLUDE_DIRS}
+)
+
 add_subdirectory(src)
 
-KF_ADD_EXECUTABLE(main main.cpp)
+link_directories(${PROJECT_SOURCE_DIR}/lib)
+
+add_executable(main main.cpp)
+target_link_libraries(main kf)

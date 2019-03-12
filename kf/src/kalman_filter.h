@@ -15,6 +15,8 @@ public:
 
     ~KalmanFilter();
 
+    bool IsInitialization();
+
     void Initialization(Eigen::VectorXd x_in);
 
     void SetF(Eigen::MatrixXd F_in);
@@ -30,6 +32,8 @@ public:
     void Predict();
 
     void MeasurementUpdate(const Eigen::VectorXd &z);
+
+    Eigen::VectorXd GetX();
 
 private:
     // flag of initialization
