@@ -5,7 +5,7 @@
 
 #define DELTA_T 0.2
 #define MEAN 0.0        // mean of gaussian noise
-#define STDDEV 0.1     // standard deviation of gaussian noise
+#define STDDEV 0.01     // standard deviation of gaussian noise
 #define CAR_VX 0.50     // car velocity of x-axis
 #define CAR_VY 0.51     // car velocity of y-axis
 
