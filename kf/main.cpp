@@ -5,7 +5,7 @@
 
 #define DELTA_T 0.2
 #define MEAN 0.0        // mean of gaussian noise
-#define STDDEV 0.01     // standard deviation of gaussian noise
+#define STDDEV 0.1     // standard deviation of gaussian noise
 #define CAR_VX 0.50     // car velocity of x-axis
 #define CAR_VY 0.51     // car velocity of y-axis
 
@@ -34,7 +34,6 @@ int main() {
     for (int i = 0; i < 10000; ++i) {
         GetLidarData(m_x, m_y, now_timestamp);
 
-        // state transition matrix
         double delat_t = now_timestamp - last_timestamp;
         last_timestamp = now_timestamp;
 
@@ -56,7 +55,7 @@ int main() {
 
             // set process covariance matrix
             Eigen::MatrixXd Q_in(4, 4);
-            P_in << 1.0, 0.0, 0.0, 0.0,
+            Q_in << 1.0, 0.0, 0.0, 0.0,
                     0.0, 1.0, 0.0, 0.0,
                     0.0, 0.0, 1.0, 0.0,
                     0.0, 0.0, 0.0, 1.0;
@@ -70,11 +69,12 @@ int main() {
 
             // measurement convairance matrix
             Eigen::MatrixXd R_in(2, 2);
-            R_in << 0.002225, 0.0,
+            R_in << 0.00225, 0.0,
                     0.0, 0.00225;
             kf.SetR(R_in);
         }
 
+        // state transition matrix
         Eigen::MatrixXd F_in(4, 4);
         F_in << 1.0, 0.0, delat_t, 0.0,
                 0.0, 1.0, 0.0, delat_t,
@@ -92,7 +92,8 @@ int main() {
         // get results
         Eigen::VectorXd x_out = kf.GetX();
         std::cout << "kalman error x: " << x_out(0) - i * delat_t * CAR_VX <<
-                     "  error y: " << x_out(1) - i * delat_t *CAR_VY << std::endl ;
+                     "  error y: " << x_out(1) - i * delat_t *CAR_VY <<
+                     "  v_x: " << x_out(2) << "  v_y: " << x_out(3) << std::endl;
     }
 
     return 0;
