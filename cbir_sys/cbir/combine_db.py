@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-创建于2019年1月28日
+@Date: creating 24th Mar. 2019
 
-@作者: 包灵
-@描述: 合并两个hdf5检索库
-
-@可重用性：中等
+@Author: Ling
+@Description: combine two hdf5 feature database
 """
 
 import h5py
@@ -36,7 +34,7 @@ def combine_hdf5(db_1, db_2, save_db):
 
 
 if __name__ == '__main__':
-    """ 合并两个检索库 """
+    """ combine two hdf5 database """
     db_1_path = 'path_to/db1.hdf5'
     db_2_path = 'path_to/db2.hdf5'
 

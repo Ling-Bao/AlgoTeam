@@ -1,10 +1,10 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-@Author: Ling Bao
+@Author: Ling
 
 @Function: Get image's representation using pre-trained model
-@date: 28/1/2019
+@Date: creating 24th Mar. 2019
 """
 
 import numpy as np
@@ -27,36 +27,37 @@ class VGGNet:
 
     def get_trained_model(self, model_path):
         """
-        下载VGG16预训练模型到~/.keras/models；创建VGG16 model实例实现特征提取；保存模型与权重到model_path
-        :param model_path: 模型保存路径
+        Download pretrain model, eg. vgg16, to ~/.keras/models;
+        Save model network and weights to model_path
+        :param model_path: save path for model
         :return: None
         """
         self.model = VGG16(weights=self.weight,
                            input_shape=(self.input_shape[0], self.input_shape[1], self.input_shape[2]),
                            pooling=self.pooling, include_top=False)
 
-        # test
-        self.model.predict(np.zeros((1, 224, 224, 3)))
+        # testing
+        self.model.predict(np.zeros((1, self.input_shape[0], self.input_shape[1], self.input_shape[2])))
 
-        # save model and weights
+        # save model and weights to model_path
         self.model.save(model_path)
 
     def get_product_mode(self, model_path):
         """
-        从model_path载入VGG16模型并创建VGG16 model实例实现特征提取
-        :param model_path: 载入模型路径
+        Using pretrain model, eg. vgg16, in model_path to create object and to extract feature
+        :param model_path: load path for model
         :return: None
         """
         # load model and weights
         self.model = load_model(model_path)
 
-        # test
+        # testing
         self.model.predict(np.zeros((1, 224, 224, 3)))
 
     def extract_feat(self, img_path):
         """
         Use vgg16 model to extract features, Output normalized feature vector
-        :param img_path: 待提取特征的图像路径
+        :param img_path: Path of images extracted feature
         :return: None
         """
         img = image.load_img(img_path, target_size=(self.input_shape[0], self.input_shape[1]))
@@ -71,9 +72,9 @@ class VGGNet:
 
 class CNNFeature:
     """
-    CNN特征提取产品类
+    Production of CNN feature extract
     """
-    def __init__(self, model_path, model_type):
+    def __init__(self, model_path, model_type='vgg16'):
         self.model = None
 
         if model_type == 'vgg16':

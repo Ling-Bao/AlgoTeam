@@ -4,12 +4,12 @@
 @Author: Ling Bao
 
 @Function: Indexing image
-@date: 23/2/2019
+@Date: creating 24th Mar. 2019
 """
 
 import argparse
 
-from cbir.index_image import IndexImg
+from .cbir.index_image import IndexImg
 
 
 ap = argparse.ArgumentParser()
@@ -23,7 +23,7 @@ args = vars(ap.parse_args())
 
 
 if __name__ == '__main__':
-    """ 实现图像特征表示提取：model_path--特征提取模型路径，save_path--特征提取库保存路径，database--图像集路径 """
+    """ h5_model_path--path of model, h5_save_path--feature save path, img_root--root of images """
     h5_model_path = args["model_path"]
     h5_save_path = args["save_path"]
     img_root = args["img_root"]

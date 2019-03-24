@@ -4,7 +4,7 @@
 @Author: Ling Bao
 
 @Function: Indexing image
-@date: 28/1/2019
+@Date: creating 24th Mar. 2019
 """
 
 import os
@@ -16,7 +16,10 @@ from .cnn_feature import CNNFeature
 
 class IndexImg:
     """
-    @Description: 1. 获取指定目录下图像路径；2. 提取图像特征；3. 以hdf5格式按索引保存图像特征；4. 支持增量添加图像特征。
+    @Description: 1. get all image path in path root
+                  2. extract all images' feature
+                  3. create index and save to hdf5 feature database
+                  4. support increasing add feature to old hdf5 database
     """
     def __init__(self):
         self.model, self.model_path, self.model_type = None, None, None
@@ -27,11 +30,11 @@ class IndexImg:
     def add_feature(self, model_path, save_path, img_dir, model_type='vgg16', img_suffix=['.jpg', '.jpeg']):
         """
         
-        :param model_path: keras模型路径
-        :param save_path: 特征保存路径，以hdf5格式保存
-        :param img_dir: 图像路径，可包含多层文件夹
-        :param model_type: 模型类型， eg. vgg16
-        :param img_suffix: 图像后缀名list， eg. ['.jpg', '.jpeg']
+        :param model_path: load path for model
+        :param save_path: path for feature save, using hdf5 format to save
+        :param img_dir: root directory of image
+        :param model_type: type os model, eg. vgg16
+        :param img_suffix: suffix of image, eg. ['.jpg', '.jpeg']
         :return: None
         """
         self.model_path = model_path
@@ -46,9 +49,9 @@ class IndexImg:
 
     def __get_image_path(self, img_dir, img_suffix):
         """
-        1. 获取指定目录下图像路径
-        :param img_dir: 图像路径，可包含多层文件夹
-        :param img_suffix: 图像后缀名list, eg. ['.jpg', '.jpeg']
+        1. get all image path in image directory
+        :param img_dir: root directory of image
+        :param img_suffix: suffix of image, eg. ['.jpg', '.jpeg']
         :return: 
         """
         img_list = []
@@ -63,7 +66,7 @@ class IndexImg:
 
     def __get_feature(self):
         """
-        2. 提取图像特征，返回图像特征及图像对应路径名
+        2. extract feature
         :return: features, names
         """
         self.model = CNNFeature(self.model_path, self.model_type)
@@ -85,11 +88,11 @@ class IndexImg:
 
     def __save_hdf5(self):
         """
-        3. 以hdf5格式按索引保存图像特征；
-        4. 支持增量添加图像特征。
+        3. create index and save to hdf5 feature database
+        4. support increasing add feature to old hdf5 database
         :return: 
         """
-        # 检查是否存在已经保存的图像特征
+        # check whether exists feature extracted
         if os.path.exists(self.save_path):
             db_h5f = h5py.File(self.save_path, 'r')
             db_feats = db_h5f['feature'][:]
