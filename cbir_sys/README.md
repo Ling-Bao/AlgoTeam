@@ -5,6 +5,7 @@ cbir_sys is a system for image retrieval, including demo and method evaluation.
 
 
 ## 3 Evaluation
+[README.md](tools/eva/README.md)
 ### 3.1 roxford5k
 | method | mAP | mp@k[1 5 10] |
 | ------ | ------ | ------ |
