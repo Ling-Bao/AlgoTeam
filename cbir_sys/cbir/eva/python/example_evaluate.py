@@ -20,7 +20,8 @@ from evaluate import compute_map
 # Set data folder and testing parameters
 # ---------------------------------------------------------------------
 # Set data folder, change if you have downloaded the data somewhere else
-data_root = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'data')
+# data_root = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'data')
+data_root = '/home/bl/workspace/datas/cbir/data'
 # Check, and, if necessary, download test data (Oxford and Pairs), 
 # revisited annotation, and example feature vectors for evaluation
 download_datasets(data_root)

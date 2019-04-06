@@ -1,2 +1,3 @@
-tensorflow==1.12.2
-keras==2.2.4
+tensorflow
+keras
+#conda install faiss-cpu -c pytorch
