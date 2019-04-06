@@ -68,9 +68,11 @@ def run_eva(feature_path, data_root, test_dataset='roxford5k', b_download_datase
     # load query and database features
     print('>> {}: Loading features...'.format(test_dataset))
     # features = loadmat(os.path.join(data_root, 'features', '{}_resnet_rsfm120k_gem.mat'.format(test_dataset)))
+    # Q = features['Q'][:]
+    # X = features['X'][:]
     features = h5py.File(feature_path, 'r')
-    Q = features['Q'][:]
-    X = features['X'][:]
+    Q = features['Q'][:].T
+    X = features['X'][:].T
 
     # perform search
     print('>> {}: Retrieval...'.format(test_dataset))
