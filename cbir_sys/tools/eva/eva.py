@@ -28,7 +28,7 @@ if __name__ == '__main__':
 
     # Set test dataset: roxford5k | rparis6k
     test_dataset_name = 'roxford5k'
-    feature_file = os.path.join(dataset_root, test_dataset_name, 'features.hdf5')
+    feature_file = os.path.join(dataset_root, test_dataset_name + '_features.hdf5')
 
     model_file = '../../support/vgg16.h5'
 

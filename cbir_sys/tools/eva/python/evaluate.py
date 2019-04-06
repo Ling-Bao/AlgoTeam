@@ -103,7 +103,7 @@ def compute_map(ranks, gnd, kappas=[]):
         # compute precision @ k
         pos += 1  # get it to 1-based
         for j in np.arange(len(kappas)):
-            kq = min(max(pos), kappas[j]);
+            kq = min(max(pos), kappas[j])
             prs[i, j] = (pos <= kq).sum() / kq
         pr = pr + prs[i, :]
 
