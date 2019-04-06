@@ -1,3 +1,6 @@
+# websit
+[revisitop](http://cmp.felk.cvut.cz/revisitop/)
+
 # Revisiting Oxford and Paris: Large-Scale Image Retrieval Benchmarking
 
 We revisit and address issues with Oxford 5k and Paris 6k image retrieval benchmarks. New annotation for both datasets is created with an extra attention to the reliability of the ground truth and three new protocols of varying difficulty are introduced. We additionally introduce 15 new challenging queries per dataset and a new set of 1M hard distractors.

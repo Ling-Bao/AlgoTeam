@@ -9,7 +9,7 @@
 
 import argparse
 
-from cbir.index_image import IndexImg
+from common.index_image import IndexImg
 
 
 ap = argparse.ArgumentParser()

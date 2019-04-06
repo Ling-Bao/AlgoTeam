@@ -16,13 +16,15 @@ from dataset import configdataset
 from download import download_datasets, download_features
 from evaluate import compute_map
 
+
 # ---------------------------------------------------------------------
 # Set data folder and testing parameters
 # ---------------------------------------------------------------------
 # Set data folder, change if you have downloaded the data somewhere else
 # data_root = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'data')
 data_root = '/home/bl/workspace/datas/cbir/data'
-# Check, and, if necessary, download test data (Oxford and Pairs), 
+
+# Check, and, if necessary, download test data (Oxford and Pairs),
 # revisited annotation, and example feature vectors for evaluation
 download_datasets(data_root)
 download_features(data_root)
@@ -86,4 +88,4 @@ mapH, apsH, mprH, prsH = compute_map(ranks, gnd_t, ks)
 print('>> {}: mAP E: {}, M: {}, H: {}'.format(test_dataset, np.around(mapE * 100, decimals=2),
                                               np.around(mapM * 100, decimals=2), np.around(mapH * 100, decimals=2)))
 print('>> {}: mP@k{} E: {}, M: {}, H: {}'.format(test_dataset, np.array(ks), np.around(mprE * 100, decimals=2),
-                                                 np.around(mprM * 100, decimals=2), np.around(mprH * 100, decimals=2)))
+                                                     np.around(mprM * 100, decimals=2), np.around(mprH * 100, decimals=2)))

@@ -7,7 +7,7 @@
 @date: 23/2/2019
 """
 
-from cbir.query_faiss import FaissQuery
+from common.query_faiss import FaissQuery
 
 
 if __name__ == '__main__':
