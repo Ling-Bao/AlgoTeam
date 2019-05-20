@@ -79,7 +79,7 @@ def gen_triplet_data(db_root, save_path):
                ['xl_query.hdf5', 'xy_database.hdf5'],
                ['sw_query.hdf5', 'xy_database.hdf5'],
                ['cf_query.hdf5', 'xy_database.hdf5']]
-    type_list = ['行李区', '室外', '出发厅']
+    type_list = ['xl', 'sw', 'cf']
 
     image_save_path = os.path.join(save_path, "images/")
 
